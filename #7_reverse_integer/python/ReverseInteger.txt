@@ -1,0 +1,25 @@
+class Solution:
+    def reverse(self, x: 'int') -> 'int':
+               
+        input = x
+        
+        if (input < 0):
+            sign = -1
+            input = -input
+        else:
+            sign = 1
+        
+        sum = 0
+        while(input != 0):
+            sum = sum * 10 + input%10
+            input = int(input/10)
+                    
+        sum *= sign
+        
+        if (sum > (2**31) - 1 or sum < -(2**31)):
+            sum = 0
+        
+        return sum
+        
+        
+        

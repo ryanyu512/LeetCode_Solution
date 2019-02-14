@@ -1,0 +1,63 @@
+class Solution {
+public:
+    
+    std::vector<int> LetterToNumber(const char *s, const int size){
+        std::vector<int> vec;
+        vec.reserve(size);
+        
+        for (int i = 0 ; i < size; i ++){
+            char c = s[i];
+            switch(c){
+                case 'I':
+                    vec[i] = 1;
+                    break;
+                case 'V':
+                    vec[i] = 5;
+                    break;
+                case 'X':
+                    vec[i] = 10;
+                    break;
+                case 'L':
+                    vec[i] = 50;
+                    break;
+                case 'C':
+                    vec[i] = 100;
+                    break;
+                case 'D':
+                    vec[i] = 500;
+                    break;
+                case 'M':
+                    vec[i] = 1000;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        return vec;
+    } 
+    
+    int romanToInt(string s) {
+        
+        const char *cptr_s = s.c_str();
+        
+        int str_size = s.size();
+                
+        std::vector<int> v = LetterToNumber(cptr_s, str_size);
+        
+        std::vector<int> is_S;
+        is_S.reserve(str_size);
+        
+        for (int i = 0; i < str_size; i ++)
+            is_S[i] = false;
+        
+        for (int i = 0; i < str_size - 1; i ++)
+                is_S[i] = (v[i] < v[i + 1])? true:false;
+        
+        int sum = 0;
+        for (int i = str_size - 1; i >= 0; i --)
+            sum = (is_S[i])? sum - v[i]: sum + v[i];
+                       
+        return sum;
+    }
+};

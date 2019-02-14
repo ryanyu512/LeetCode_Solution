@@ -1,0 +1,45 @@
+class Solution:
+    
+    def LetterToNumber(self, s: 'str'):
+        list = []
+        for i in s:
+            if (i == 'I'):
+                list.append(1)
+            elif (i == 'V'):
+                list.append(5)
+            elif (i == 'X'):
+                list.append(10)
+            elif (i == 'L'):
+                list.append(50)
+            elif (i == 'C'):
+                list.append(100)
+            elif (i == 'D'):
+                list.append(500)
+            elif (i == 'M'):
+                list.append(1000)
+   
+        return list
+
+    def romanToInt(self, s: 'str') -> 'int':
+        
+        list = self.LetterToNumber(s)
+        list_length = len(list)
+        
+        is_S = []
+        for i in range(list_length - 1):
+            if (list[i] < list[i + 1]):
+                is_S.append(True)
+            else:
+                is_S.append(False)
+        is_S.append(False)
+        
+        sum = 0    
+        for i in range(list_length):
+            if (is_S[i] == True):
+                sum -= list[i]
+            else:    
+                sum += list[i]
+               
+        return sum
+            
+        
